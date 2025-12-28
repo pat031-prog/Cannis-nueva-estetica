@@ -1,5 +1,4 @@
 import SmoothScroll from './components/SmoothScroll';
-import ScrollProgress from './components/ScrollProgress';
 import NetworkBackground from './components/NetworkBackground';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
@@ -12,7 +11,6 @@ function App() {
     <SmoothScroll>
       <div className="relative min-h-screen">
         <NetworkBackground />
-        <ScrollProgress />
         <div className="relative z-10">
           <Header />
           <main>
