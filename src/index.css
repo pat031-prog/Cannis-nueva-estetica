@@ -29,6 +29,24 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  /* Smooth scroll optimization */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Performance optimizations */
+  * {
+    will-change: auto;
+  }
+
+  /* Hardware acceleration for transforms */
+  [class*="translate"],
+  [class*="scale"],
+  [class*="rotate"] {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
 }
 
 @layer components {

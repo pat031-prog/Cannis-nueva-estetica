@@ -25,22 +25,26 @@ const HeroSection = () => {
       <div className="max-w-6xl mx-auto">
         {/* Hero Dinámico Centrado */}
         <div className="text-center mb-12">
-          {/* Título con Texto Animado */}
+          {/* Título con Texto Animado - Optimizado */}
           <div className="mb-6">
-            <h1 className="font-agrandir text-6xl md:text-7xl font-bold text-gray-900 leading-tight">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="font-agrandir text-6xl md:text-7xl font-bold text-gray-900 leading-tight"
+            >
               El ecosistema médico
-            </h1>
+            </motion.h1>
             <div className="h-24 flex items-center justify-center mt-2">
               <AnimatePresence mode="wait">
                 <motion.h1
                   key={currentIndex}
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: -20, opacity: 0 }}
+                  initial={{ y: 30, opacity: 0, filter: 'blur(4px)' }}
+                  animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
+                  exit={{ y: -30, opacity: 0, filter: 'blur(4px)' }}
                   transition={{
-                    type: 'spring',
-                    stiffness: 200,
-                    damping: 20,
+                    duration: 0.5,
+                    ease: [0.22, 1, 0.36, 1],
                   }}
                   className={`font-agrandir text-6xl md:text-7xl font-bold ${dynamicTexts[currentIndex].color}`}
                 >
@@ -51,53 +55,85 @@ const HeroSection = () => {
           </div>
 
           {/* Descripción Concreta */}
-          <p className="font-inter text-xl text-gray-600 max-w-2xl mx-auto mb-10">
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="font-inter text-xl text-gray-600 max-w-2xl mx-auto mb-10"
+          >
             Red inteligente que une profesionales, ONGs y pacientes en una
             plataforma transparente
-          </p>
+          </motion.p>
 
-          {/* CTAs Modernos */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          {/* CTAs Modernos con Micro-interacciones */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
+          >
             <motion.button
-              whileHover={{ scale: 1.02 }}
+              whileHover={{
+                scale: 1.03,
+                boxShadow: '6px 6px 0px 0px rgba(0,0,0,1)',
+                x: -1,
+                y: -1,
+              }}
               whileTap={{ scale: 0.98 }}
-              className="bg-cannis-green text-white px-8 py-4 rounded-2xl font-inter font-semibold text-base border-3 border-gray-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[-2px] hover:translate-y-[-2px]"
+              transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+              className="bg-cannis-green text-white px-8 py-4 rounded-2xl font-inter font-semibold text-base border-3 border-gray-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] will-change-transform"
             >
               Comenzar Ahora
             </motion.button>
             <motion.button
-              whileHover={{ scale: 1.02 }}
+              whileHover={{
+                scale: 1.03,
+                boxShadow: '6px 6px 0px 0px_rgba(0,0,0,1)',
+                x: -1,
+                y: -1,
+              }}
               whileTap={{ scale: 0.98 }}
-              className="bg-white text-gray-900 px-8 py-4 rounded-2xl font-inter font-semibold text-base border-3 border-gray-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[-2px] hover:translate-y-[-2px]"
+              transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+              className="bg-white text-gray-900 px-8 py-4 rounded-2xl font-inter font-semibold text-base border-3 border-gray-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] will-change-transform inline-flex items-center justify-center gap-2"
             >
-              <span className="flex items-center gap-2">
-                <Sparkles size={20} />
-                Ver Demo
-              </span>
+              <Sparkles size={20} />
+              Ver Demo
             </motion.button>
-          </div>
+          </motion.div>
 
-          {/* Métricas Compactas en Pill */}
+          {/* Métricas Compactas en Pill - Optimizado */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
+            transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="inline-flex items-center gap-6 bg-white px-8 py-4 rounded-full border-2 border-gray-900 shadow-md"
           >
-            <div className="text-center">
+            <motion.div
+              className="text-center"
+              whileHover={{ scale: 1.1 }}
+              transition={{ type: 'spring', stiffness: 300 }}
+            >
               <p className="text-2xl font-bold text-gray-900">1.2K+</p>
               <p className="font-inter text-xs text-gray-600">Profesionales</p>
-            </div>
+            </motion.div>
             <div className="w-px h-10 bg-gray-300"></div>
-            <div className="text-center">
+            <motion.div
+              className="text-center"
+              whileHover={{ scale: 1.1 }}
+              transition={{ type: 'spring', stiffness: 300 }}
+            >
               <p className="text-2xl font-bold text-gray-900">180+</p>
               <p className="font-inter text-xs text-gray-600">ONGs</p>
-            </div>
+            </motion.div>
             <div className="w-px h-10 bg-gray-300"></div>
-            <div className="text-center">
+            <motion.div
+              className="text-center"
+              whileHover={{ scale: 1.1 }}
+              transition={{ type: 'spring', stiffness: 300 }}
+            >
               <p className="text-2xl font-bold text-gray-900">25K+</p>
               <p className="font-inter text-xs text-gray-600">Beneficiarios</p>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>

@@ -58,21 +58,23 @@ const ProfileSelector = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
+        staggerChildren: 0.08,
+        delayChildren: 0.15,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
+    hidden: { opacity: 0, scale: 0.85, y: 20 },
     visible: {
       opacity: 1,
       scale: 1,
+      y: 0,
       transition: {
         type: 'spring',
-        stiffness: 100,
-        damping: 15,
+        stiffness: 260,
+        damping: 20,
+        mass: 0.8,
       },
     },
   };
@@ -84,7 +86,7 @@ const ProfileSelector = () => {
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-14"
         >
           <h2 className="font-agrandir text-5xl md:text-6xl font-bold text-gray-900 mb-4">
@@ -109,20 +111,28 @@ const ProfileSelector = () => {
                 key={profile.id}
                 variants={itemVariants}
                 whileHover={{
-                  scale: 1.02,
-                  rotate: [0, -1, 1, 0],
-                  transition: { duration: 0.3 },
+                  scale: 1.03,
+                  boxShadow: '8px 8px 0px 0px rgba(0,0,0,1)',
+                  x: -2,
+                  y: -2,
                 }}
-                whileTap={{ scale: 0.98 }}
-                className={`group relative ${profile.span} ${profile.color} rounded-3xl border-3 border-gray-900 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all duration-300 cursor-pointer overflow-hidden p-8`}
+                whileTap={{ scale: 0.97 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                className={`group relative ${profile.span} ${profile.color} rounded-3xl border-3 border-gray-900 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] cursor-pointer overflow-hidden p-8 will-change-transform`}
               >
                 {/* Contenido */}
                 <div className="relative z-10 h-full flex flex-col justify-between">
                   {/* Ícono Animado */}
                   <motion.div
-                    whileHover={{ rotate: 360, scale: 1.1 }}
-                    transition={{ duration: 0.6 }}
-                    className="inline-block"
+                    whileHover={{
+                      rotate: 360,
+                      scale: 1.15,
+                      transition: {
+                        duration: 0.6,
+                        ease: [0.22, 1, 0.36, 1],
+                      }
+                    }}
+                    className="inline-block will-change-transform"
                   >
                     <IconComponent
                       size={64}
