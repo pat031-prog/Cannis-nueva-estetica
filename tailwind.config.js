@@ -17,6 +17,9 @@ export default {
         'inter': ['Inter', 'system-ui', 'sans-serif'],
         'mono': ['Fira Code', 'Monaco', 'Consolas', 'monospace'],
       },
+      borderWidth: {
+        '3': '3px',
+      },
       boxShadow: {
         'tactical': '0 2px 8px rgba(27, 126, 68, 0.08)',
         'tactical-hover': '0 8px 24px rgba(27, 126, 68, 0.15)',

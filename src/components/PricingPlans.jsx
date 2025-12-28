@@ -1,52 +1,50 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Check, X } from 'lucide-react';
 
 const plans = [
   {
     id: 'basico',
-    name: 'Plan Básico',
+    name: 'Básico',
     monthlyPrice: 5000,
     yearlyPrice: 50000,
+    color: 'from-blue-500 to-blue-600',
     features: [
-      { text: 'Hasta 50 beneficiarios activos', included: true },
-      { text: 'Dashboard básico de métricas', included: true },
-      { text: 'Soporte por email', included: true },
-      { text: 'Actualización mensual de datos', included: true },
-      { text: 'Acceso a biblioteca de recursos', included: true },
-      { text: 'Dashboard avanzado con IA', included: false },
-      { text: 'Soporte prioritario 24/7', included: false },
+      { text: '50 beneficiarios', included: true },
+      { text: 'Dashboard básico', included: true },
+      { text: 'Soporte email', included: true },
+      { text: 'Dashboard con IA', included: false },
+      { text: 'Soporte 24/7', included: false },
     ],
     recommended: false,
   },
   {
     id: 'institucional',
-    name: 'Plan Institucional',
+    name: 'Institucional',
     monthlyPrice: 12000,
     yearlyPrice: 120000,
+    color: 'from-cannis-green to-green-600',
     features: [
-      { text: 'Hasta 200 beneficiarios activos', included: true },
-      { text: 'Dashboard avanzado con IA', included: true },
+      { text: '200 beneficiarios', included: true },
+      { text: 'Dashboard avanzado IA', included: true },
       { text: 'Soporte prioritario 24/7', included: true },
-      { text: 'Actualización en tiempo real', included: true },
-      { text: 'Biblioteca premium + webinars', included: true },
-      { text: 'Integración con sistemas externos', included: true },
-      { text: 'Reportes personalizados', included: true },
+      { text: 'Tiempo real', included: true },
+      { text: 'Webinars premium', included: true },
     ],
     recommended: true,
   },
   {
     id: 'integral',
-    name: 'Plan Integral',
+    name: 'Integral',
     monthlyPrice: 25000,
     yearlyPrice: 250000,
+    color: 'from-purple-500 to-purple-600',
     features: [
-      { text: 'Beneficiarios ilimitados', included: true },
-      { text: 'Dashboard completo + API dedicada', included: true },
-      { text: 'Gestor de cuenta dedicado', included: true },
-      { text: 'Sincronización instantánea', included: true },
-      { text: 'Contenido exclusivo + certificaciones', included: true },
-      { text: 'Integración total + workflows custom', included: true },
-      { text: 'Analytics predictivo con ML', included: true },
+      { text: 'Ilimitados', included: true },
+      { text: 'API dedicada', included: true },
+      { text: 'Gestor dedicado', included: true },
+      { text: 'Analytics ML', included: true },
+      { text: 'White-label', included: true },
     ],
     recommended: false,
   },
@@ -61,64 +59,75 @@ const PricingPlans = () => {
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
-        delayChildren: 0.15,
+        delayChildren: 0.2,
       },
     },
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, scale: 0.9 },
     visible: {
       opacity: 1,
-      y: 0,
+      scale: 1,
       transition: {
-        duration: 0.5,
+        type: 'spring',
+        stiffness: 100,
+        damping: 15,
       },
     },
   };
 
   return (
-    <section className="py-16 px-6 lg:px-8 bg-gray-50">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-20 px-6 lg:px-8 bg-gray-50">
+      <div className="max-w-6xl mx-auto">
         {/* Título */}
         <motion.div
-          initial={{ opacity: 0, y: -10 }}
+          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-10"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
         >
-          <h2 className="font-agrandir text-4xl font-bold text-gray-900 mb-3">
+          <h2 className="font-agrandir text-5xl font-bold text-gray-900 mb-3">
             Planes para ONGs
           </h2>
-          <p className="font-inter text-gray-600 text-base max-w-2xl mx-auto">
-            Equipamiento diseñado para maximizar tu impacto social
+          <p className="font-inter text-lg text-gray-600">
+            Equipamiento para maximizar impacto social
           </p>
         </motion.div>
 
-        {/* Toggle de Facturación - Estilo Pill */}
+        {/* Toggle con Spring Physics */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex justify-center items-center mb-12"
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="flex justify-center items-center mb-14"
         >
-          <div className="inline-flex items-center bg-white rounded-lg p-1 border border-gray-200 shadow-sm">
+          <div className="relative inline-flex items-center bg-white rounded-full p-1.5 border-3 border-gray-900 shadow-md">
+            <motion.div
+              className="absolute top-1.5 bottom-1.5 bg-cannis-green rounded-full"
+              initial={false}
+              animate={{
+                left: billingCycle === 'monthly' ? '6px' : 'calc(50%)',
+                width: 'calc(50% - 6px)',
+              }}
+              transition={{
+                type: 'spring',
+                stiffness: 300,
+                damping: 30,
+              }}
+            />
             <button
               onClick={() => setBillingCycle('monthly')}
-              className={`px-6 py-2.5 rounded-md font-inter font-medium text-sm transition-all duration-200 ${
-                billingCycle === 'monthly'
-                  ? 'bg-cannis-green text-white shadow-sm'
-                  : 'text-gray-600 hover:text-gray-900'
+              className={`relative z-10 px-6 py-2.5 rounded-full font-inter font-semibold text-sm transition-colors duration-200 ${
+                billingCycle === 'monthly' ? 'text-white' : 'text-gray-700'
               }`}
             >
               Mensual
             </button>
             <button
               onClick={() => setBillingCycle('yearly')}
-              className={`px-6 py-2.5 rounded-md font-inter font-medium text-sm transition-all duration-200 ${
-                billingCycle === 'yearly'
-                  ? 'bg-cannis-green text-white shadow-sm'
-                  : 'text-gray-600 hover:text-gray-900'
+              className={`relative z-10 px-6 py-2.5 rounded-full font-inter font-semibold text-sm transition-colors duration-200 ${
+                billingCycle === 'yearly' ? 'text-white' : 'text-gray-700'
               }`}
             >
               Anual
@@ -126,18 +135,18 @@ const PricingPlans = () => {
           </div>
           {billingCycle === 'yearly' && (
             <motion.div
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="ml-3 px-3 py-1 bg-cannis-green/10 rounded-full"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="ml-4 px-4 py-1.5 bg-amber-100 rounded-full border-2 border-amber-400"
             >
-              <span className="text-sm font-inter font-medium text-cannis-green">
-                Ahorrá hasta 17%
+              <span className="text-sm font-inter font-bold text-amber-700">
+                17% OFF
               </span>
             </motion.div>
           )}
         </motion.div>
 
-        {/* Tarjetas de Planes */}
+        {/* Tarjetas Tipo Ticket */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -148,112 +157,77 @@ const PricingPlans = () => {
             <motion.div
               key={plan.id}
               variants={cardVariants}
-              whileHover={{ y: -4 }}
-              className={`relative bg-white rounded-xl border shadow-sm p-8 transition-all duration-300 ${
-                plan.recommended
-                  ? 'border-cannis-green shadow-md ring-2 ring-cannis-green/20'
-                  : 'border-gray-200 hover:border-gray-300 hover:shadow-md'
+              whileHover={{
+                scale: 1.03,
+                rotate: [0, -0.5, 0.5, 0],
+                transition: { duration: 0.3 },
+              }}
+              whileTap={{ scale: 0.98 }}
+              className={`relative bg-white rounded-3xl border-3 border-gray-900 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[-2px] hover:translate-y-[-2px]] transition-all duration-300 overflow-hidden ${
+                plan.recommended ? 'ring-4 ring-cannis-green ring-offset-2' : ''
               }`}
             >
-              {/* Badge Recomendado */}
-              {plan.recommended && (
-                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                  <span className="inline-block bg-cannis-green text-white px-4 py-1 rounded-full text-xs font-inter font-medium shadow-sm">
-                    Recomendado
+              {/* Header Colorido */}
+              <div
+                className={`bg-gradient-to-br ${plan.color} p-6 text-white`}
+              >
+                {plan.recommended && (
+                  <span className="inline-block bg-white text-gray-900 px-3 py-1 rounded-full text-xs font-inter font-bold mb-3">
+                    ⭐ RECOMENDADO
                   </span>
-                </div>
-              )}
-
-              {/* Header del Plan */}
-              <div className="mb-6">
-                <h3 className="font-inter text-xl font-bold text-gray-900 mb-4">
+                )}
+                <h3 className="font-agrandir text-2xl font-bold mb-2">
                   {plan.name}
                 </h3>
-
-                {/* Precio */}
-                <div className="flex items-baseline mb-1">
-                  <span className="text-4xl font-bold text-gray-900">
+                <div className="flex items-baseline">
+                  <span className="text-5xl font-bold">
                     $
                     {billingCycle === 'monthly'
                       ? plan.monthlyPrice.toLocaleString('es-AR')
                       : plan.yearlyPrice.toLocaleString('es-AR')}
                   </span>
-                  <span className="ml-2 font-inter text-gray-600 text-sm">
+                  <span className="ml-2 text-white/80">
                     /{billingCycle === 'monthly' ? 'mes' : 'año'}
                   </span>
                 </div>
               </div>
 
-              {/* Separador */}
-              <div className="h-px bg-gray-200 mb-6"></div>
-
               {/* Features */}
-              <ul className="space-y-3.5 mb-8">
-                {plan.features.map((feature, index) => (
-                  <li key={index} className="flex items-start">
-                    {feature.included ? (
-                      <svg
-                        className="w-5 h-5 text-cannis-green mr-3 mt-0.5 flex-shrink-0"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
+              <div className="p-6">
+                <ul className="space-y-3 mb-6">
+                  {plan.features.map((feature, index) => (
+                    <li key={index} className="flex items-start gap-2">
+                      {feature.included ? (
+                        <Check className="w-5 h-5 text-cannis-green flex-shrink-0 mt-0.5" />
+                      ) : (
+                        <X className="w-5 h-5 text-gray-300 flex-shrink-0 mt-0.5" />
+                      )}
+                      <span
+                        className={`font-inter text-sm ${
+                          feature.included ? 'text-gray-800' : 'text-gray-400'
+                        }`}
                       >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    ) : (
-                      <svg
-                        className="w-5 h-5 text-gray-300 mr-3 mt-0.5 flex-shrink-0"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    )}
-                    <span
-                      className={`font-inter text-sm leading-relaxed ${
-                        feature.included ? 'text-gray-700' : 'text-gray-400'
-                      }`}
-                    >
-                      {feature.text}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+                        {feature.text}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
 
-              {/* Botón */}
-              <button
-                className={`w-full py-3 rounded-lg font-inter font-medium text-sm transition-all duration-200 ${
-                  plan.recommended
-                    ? 'bg-cannis-green text-white hover:bg-opacity-90 shadow-sm hover:shadow-md'
-                    : 'bg-white text-cannis-green border-2 border-cannis-green hover:bg-cannis-green hover:text-white'
-                } active:scale-95`}
-              >
-                Comenzar
-              </button>
+                {/* Botón */}
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className={`w-full py-3.5 rounded-xl font-inter font-bold text-sm border-3 border-gray-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all ${
+                    plan.recommended
+                      ? 'bg-cannis-green text-white'
+                      : 'bg-white text-gray-900'
+                  }`}
+                >
+                  Elegir Plan
+                </motion.button>
+              </div>
             </motion.div>
           ))}
-        </motion.div>
-
-        {/* Footer */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          className="mt-10 text-center"
-        >
-          <p className="font-inter text-sm text-gray-600">
-            ¿Necesitás un plan personalizado?{' '}
-            <a href="#" className="text-cannis-green font-medium hover:underline">
-              Contactá a nuestro equipo
-            </a>
-          </p>
         </motion.div>
       </div>
     </section>
