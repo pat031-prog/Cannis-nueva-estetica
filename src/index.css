@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Agrandir font face (simulado con fallback moderno) */
+  @font-face {
+    font-family: 'Agrandir';
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    /* En producción, agregá aquí los archivos .woff2 de Agrandir */
+    src: local('Montserrat'), local('Poppins');
+  }
+
+  @font-face {
+    font-family: 'Agrandir';
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    src: local('Montserrat'), local('Poppins');
+  }
+
+  body {
+    @apply bg-white text-cannis-dark font-inter antialiased;
+  }
+
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  .section-title {
+    @apply font-agrandir text-3xl md:text-4xl font-bold text-cannis-dark;
+  }
+
+  .tactical-card {
+    @apply bg-white rounded-lg border border-gray-200 shadow-tactical
+           transition-all duration-300 hover:shadow-tactical-hover
+           hover:border-cannis-green hover:-translate-y-1;
+  }
+
+  .btn-primary {
+    @apply bg-cannis-green text-white px-6 py-3 rounded-lg font-inter font-medium
+           transition-all duration-200 hover:bg-opacity-90 hover:shadow-lg
+           active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-cannis-green border-2 border-cannis-green px-6 py-3
+           rounded-lg font-inter font-medium transition-all duration-200
+           hover:bg-cannis-green hover:text-white active:scale-95;
+  }
+
+  .data-label {
+    @apply font-mono text-xs uppercase tracking-wider text-gray-500;
+  }
+
+  .network-node {
+    @apply absolute rounded-full bg-cannis-green opacity-20 animate-pulse-slow;
+  }
+}
