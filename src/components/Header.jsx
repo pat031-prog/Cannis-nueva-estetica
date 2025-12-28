@@ -6,73 +6,68 @@ const Header = () => {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200"
+      className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          {/* Logo */}
-          <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-cannis-green rounded-lg flex items-center justify-center">
-              <svg
-                width="28"
-                height="28"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M12 2L2 7L12 12L22 7L12 2Z"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M2 17L12 22L22 17"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M2 12L12 17L22 12"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </div>
-            <div>
-              <h1 className="font-agrandir text-2xl font-bold text-cannis-dark">
-                CANNIS
-              </h1>
-              <p className="font-mono text-xs text-gray-500 tracking-wider">
-                BIO-NETWORK
-              </p>
-            </div>
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo - Izquierda */}
+          <div className="flex items-center">
+            <h1 className="font-agrandir text-2xl font-bold text-cannis-green tracking-tight">
+              CANNIS
+            </h1>
           </div>
 
-          {/* User Info & Portal */}
+          {/* Navegación Central */}
+          <nav className="hidden md:flex items-center space-x-8">
+            <a
+              href="#"
+              className="font-inter text-sm font-medium text-gray-600 hover:text-cannis-green transition-colors duration-200"
+            >
+              Inicio
+            </a>
+            <a
+              href="#"
+              className="font-inter text-sm font-medium text-gray-600 hover:text-cannis-green transition-colors duration-200"
+            >
+              Soluciones
+            </a>
+            <a
+              href="#"
+              className="font-inter text-sm font-medium text-gray-600 hover:text-cannis-green transition-colors duration-200"
+            >
+              Casos de Uso
+            </a>
+            <a
+              href="#"
+              className="font-inter text-sm font-medium text-gray-600 hover:text-cannis-green transition-colors duration-200"
+            >
+              Recursos
+            </a>
+          </nav>
+
+          {/* Usuario y Portal - Derecha */}
           <div className="flex items-center space-x-4">
-            {/* User Credential */}
-            <div className="hidden md:flex items-center space-x-3 px-4 py-2 rounded-lg border border-gray-200 bg-cannis-light/50">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cannis-green to-cannis-teal flex items-center justify-center">
-                <span className="font-agrandir text-white font-bold text-sm">
+            {/* Credencial Médica Digital */}
+            <div className="hidden lg:flex items-center space-x-3 px-4 py-2 rounded-lg bg-gray-50 border border-gray-200">
+              {/* Avatar */}
+              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-cannis-green to-cannis-teal flex items-center justify-center">
+                <span className="font-agrandir text-white font-bold text-xs">
                   TD
                 </span>
               </div>
-              <div>
-                <p className="font-inter text-sm font-medium text-cannis-dark">
+              {/* Info */}
+              <div className="flex flex-col">
+                <span className="font-inter text-sm font-medium text-gray-900">
                   Tomás David
-                </p>
-                <p className="font-mono text-xs text-gray-500">ID: 001-ADM</p>
+                </span>
+                <span className="font-mono text-xs text-gray-500">
+                  ID: Paciente Activo
+                </span>
               </div>
             </div>
 
-            {/* Portal Button */}
-            <button className="btn-primary flex items-center space-x-2">
-              <span>Portal</span>
+            {/* Botón Portal - Sólido Verde */}
+            <button className="flex items-center space-x-2 bg-cannis-green text-white px-5 py-2.5 rounded-lg font-inter font-medium text-sm transition-all duration-200 hover:bg-opacity-90 hover:shadow-md active:scale-95">
               <svg
                 width="16"
                 height="16"
@@ -81,13 +76,28 @@ const Header = () => {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  d="M5 12H19M19 12L12 5M19 12L12 19"
+                  d="M15 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H15"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M10 17L15 12L10 7"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M15 12H3"
                   stroke="currentColor"
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 />
               </svg>
+              <span>Portal</span>
             </button>
           </div>
         </div>

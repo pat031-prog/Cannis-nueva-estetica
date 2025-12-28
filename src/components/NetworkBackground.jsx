@@ -41,7 +41,7 @@ const NetworkBackground = () => {
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(27, 126, 68, 0.15)';
+        ctx.fillStyle = 'rgba(27, 126, 68, 0.05)';
         ctx.fill();
       }
     }
@@ -63,12 +63,12 @@ const NetworkBackground = () => {
           const distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < maxDistance) {
-            const opacity = (1 - distance / maxDistance) * 0.08;
+            const opacity = (1 - distance / maxDistance) * 0.03;
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
             ctx.strokeStyle = `rgba(27, 126, 68, ${opacity})`;
-            ctx.lineWidth = 0.5;
+            ctx.lineWidth = 0.3;
             ctx.stroke();
           }
         }
