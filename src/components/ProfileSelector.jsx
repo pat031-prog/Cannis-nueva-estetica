@@ -80,14 +80,15 @@ const ProfileSelector = () => {
   };
 
   return (
-    <section className="py-20 px-6 lg:px-8 bg-white">
+    <section className="py-32 px-6 lg:px-8 bg-white">
       <div className="max-w-6xl mx-auto">
         {/* Título Central Simplificado */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-14"
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center mb-20"
         >
           <h2 className="font-agrandir text-5xl md:text-6xl font-bold text-gray-900 mb-4">
             ¿Quién sos dentro de Cannis?
@@ -101,8 +102,9 @@ const ProfileSelector = () => {
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
-          className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 gap-4 max-w-5xl mx-auto"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 gap-6 max-w-5xl mx-auto"
         >
           {profiles.map((profile) => {
             const IconComponent = profile.icon;
@@ -111,14 +113,14 @@ const ProfileSelector = () => {
                 key={profile.id}
                 variants={itemVariants}
                 whileHover={{
-                  scale: 1.03,
-                  boxShadow: '8px 8px 0px 0px rgba(0,0,0,1)',
-                  x: -2,
-                  y: -2,
+                  scale: 1.04,
+                  boxShadow: '10px 10px 0px 0px rgba(0,0,0,1), 0 20px 50px -12px rgba(27, 126, 68, 0.3)',
+                  x: -3,
+                  y: -3,
                 }}
-                whileTap={{ scale: 0.97 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                className={`group relative ${profile.span} ${profile.color} rounded-3xl border-3 border-gray-900 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] cursor-pointer overflow-hidden p-8 will-change-transform`}
+                whileTap={{ scale: 0.96 }}
+                transition={{ type: 'spring', stiffness: 350, damping: 22 }}
+                className={`group relative ${profile.span} ${profile.color} rounded-3xl border-3 border-gray-900 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] cursor-pointer overflow-hidden p-10 will-change-transform`}
               >
                 {/* Contenido */}
                 <div className="relative z-10 h-full flex flex-col justify-between">
@@ -126,9 +128,10 @@ const ProfileSelector = () => {
                   <motion.div
                     whileHover={{
                       rotate: 360,
-                      scale: 1.15,
+                      scale: 1.2,
+                      y: -8,
                       transition: {
-                        duration: 0.6,
+                        duration: 0.7,
                         ease: [0.22, 1, 0.36, 1],
                       }
                     }}

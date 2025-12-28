@@ -80,14 +80,15 @@ const PricingPlans = () => {
   };
 
   return (
-    <section className="py-20 px-6 lg:px-8 bg-gray-50">
+    <section className="py-32 px-6 lg:px-8 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-6xl mx-auto">
         {/* Título */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-12"
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center mb-16"
         >
           <h2 className="font-agrandir text-5xl font-bold text-gray-900 mb-3">
             Planes para ONGs
@@ -100,9 +101,10 @@ const PricingPlans = () => {
         {/* Toggle con Spring Physics */}
         <motion.div
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="flex justify-center items-center mb-14"
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          className="flex justify-center items-center mb-20"
         >
           <div className="relative inline-flex items-center bg-white rounded-full p-1.5 border-3 border-gray-900 shadow-md">
             <motion.div
@@ -152,23 +154,24 @@ const PricingPlans = () => {
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
-          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
         >
           {plans.map((plan) => (
             <motion.div
               key={plan.id}
               variants={cardVariants}
               whileHover={{
-                scale: 1.03,
-                boxShadow: '8px 8px 0px 0px rgba(0,0,0,1)',
-                x: -2,
-                y: -2,
+                scale: 1.04,
+                boxShadow: '10px 10px 0px 0px rgba(0,0,0,1), 0 25px 50px -12px rgba(27, 126, 68, 0.25)',
+                x: -3,
+                y: -3,
               }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-              className={`relative bg-white rounded-3xl border-3 border-gray-900 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] overflow-hidden will-change-transform ${
-                plan.recommended ? 'ring-4 ring-cannis-green ring-offset-2' : ''
+              whileTap={{ scale: 0.96 }}
+              transition={{ type: 'spring', stiffness: 350, damping: 22 }}
+              className={`relative bg-white rounded-3xl border-3 border-gray-900 shadow-[7px_7px_0px_0px_rgba(0,0,0,1)] overflow-hidden will-change-transform ${
+                plan.recommended ? 'ring-4 ring-cannis-green ring-offset-4' : ''
               }`}
             >
               {/* Header Colorido */}
@@ -220,17 +223,17 @@ const PricingPlans = () => {
                 {/* Botón */}
                 <motion.button
                   whileHover={{
-                    scale: 1.03,
-                    boxShadow: '6px 6px 0px 0px rgba(0,0,0,1)',
+                    scale: 1.05,
+                    boxShadow: '7px 7px 0px 0px rgba(0,0,0,1)',
                     x: -2,
                     y: -2,
                   }}
-                  whileTap={{ scale: 0.97 }}
-                  transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                  className={`w-full py-3.5 rounded-xl font-inter font-bold text-sm border-3 border-gray-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] will-change-transform ${
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: 'spring', stiffness: 350, damping: 20 }}
+                  className={`w-full py-4 rounded-xl font-inter font-bold text-base border-3 border-gray-900 shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] will-change-transform ${
                     plan.recommended
-                      ? 'bg-cannis-green text-white'
-                      : 'bg-white text-gray-900'
+                      ? 'bg-cannis-green text-white hover:bg-green-600'
+                      : 'bg-white text-gray-900 hover:bg-gray-50'
                   }`}
                 >
                   Elegir Plan

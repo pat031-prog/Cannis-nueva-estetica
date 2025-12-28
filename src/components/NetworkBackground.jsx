@@ -1,7 +1,12 @@
 import { useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const NetworkBackground = () => {
   const canvasRef = useRef(null);
+  const { scrollY } = useScroll();
+
+  // Parallax: el fondo se mueve más lento (50% de la velocidad del scroll)
+  const y = useTransform(scrollY, [0, 1000], [0, 300]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -97,10 +102,13 @@ const NetworkBackground = () => {
   }, []);
 
   return (
-    <canvas
+    <motion.canvas
       ref={canvasRef}
       className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none"
-      style={{ background: 'linear-gradient(to bottom, #FFFFFF 0%, #F8F9FA 100%)' }}
+      style={{
+        background: 'linear-gradient(to bottom, #FFFFFF 0%, #F8F9FA 100%)',
+        y, // Parallax effect
+      }}
     />
   );
 };
